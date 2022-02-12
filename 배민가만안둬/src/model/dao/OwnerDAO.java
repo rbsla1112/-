@@ -51,7 +51,7 @@ public class OwnerDAO {
 		return ownerList;
 	}
 
-	public static int deleteMenu(Connection con, String menuName) {
+	public int deleteMenu(Connection con, String menuName) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -61,17 +61,17 @@ public class OwnerDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, menuName);
+			
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		result = pstmt.executeUpdate();
-		
 		return result;
 	}
 
-	public static int updateMenu(Connection con, String menuName, int menuPrice) {
+	public int updateMenu(Connection con, String menuName, int menuPrice) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;

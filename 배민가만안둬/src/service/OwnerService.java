@@ -20,7 +20,7 @@ public class OwnerService {
 		return ownerList;
 	}
 
-	public static int deleteMenu(String menuName) {
+	public int deleteMenu(String menuName) {
 		
 		Connection con = getConnection();
 		
@@ -36,7 +36,7 @@ public class OwnerService {
 		return result;
 	}
 
-	public static int updateMenu(String menuName, int menuPrice) {
+	public int updateMenu(String menuName, int menuPrice) {
 		
 		Connection con = getConnection();
 		
@@ -49,7 +49,6 @@ public class OwnerService {
 		} else {
 			rollback(con);
 		}
-		
 		close(con);
 		return result;
 	}

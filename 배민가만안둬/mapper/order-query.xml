@@ -73,4 +73,10 @@
 		FROM TBL_MENU
 	   WHERE MENU_NAME = ?
 	</entry>
+ 	<entry key="updateMenu">
+ 		UPDATE TBL_MENU
+           SET MENU_NAME = ?
+           SET MENU_PRICE = ?
+        FROM TBL_MENU
+ 	</entry>
 </properties>
