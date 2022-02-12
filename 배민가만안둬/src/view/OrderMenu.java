@@ -123,20 +123,20 @@ public class OrderMenu {
 		int totalOrderPrice = 0;
 		String inputOwner = "";
 		
+		System.out.println("----- 주문 -----");
+		
+		System.out.println("----- 주문 가능 식당 -----");
+		// 식당 목록 보여주기
+		List<OwnerDTO> ownerList = owc.selectAllOwner();
+		// 아이디(상호명)만 출력
+		for(OwnerDTO owner : ownerList) {
+			System.out.println(owner.getOwnerId());
+		}
+		
+		System.out.print("주문하실 식당을 선택해주세요 : ");
+		inputOwner = sc.nextLine();
+		
 		do {
-			System.out.println("----- 주문 -----");
-			
-			System.out.println("----- 주문 가능 식당 -----");
-			// 식당 목록 보여주기
-			List<OwnerDTO> ownerList = owc.selectAllOwner();
-			// 아이디(상호명)만 출력
-			for(OwnerDTO owner : ownerList) {
-				System.out.println(owner.getOwnerId());
-			}
-			
-			System.out.print("주문하실 식당을 선택해주세요 : ");
-			inputOwner = sc.nextLine();
-			
 			System.out.println("----- 주문 가능 메뉴 -----");
 			List<MenuDTO> menuList = orc.selectMenuByOwner(inputOwner);
 			for(MenuDTO menu : menuList) {
