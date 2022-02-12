@@ -63,7 +63,33 @@ public class OrderMenu {
 	}
 	
 	public void displayOwnerLogin() {
+		do {
+			System.out.println("----- 사장님 메뉴 -----");
+			System.out.println("1. 로그인");
+			System.out.println("2. 회원가입");
+			System.out.println(" 메뉴 선택 : ");
+			int no = sc.nextInt();
+			
+			switch(no) {
+			case 1 :
+				String inputId = inputId();
+				int result = owc.ownerLogin(inputId, inputPwd());
+				
+				if(result ==1) {
+					displayOwnerMenu(inputId); break;
+				} else {
+					break;
+				}
+			case 2 : owc.ownerSignup(inputId(), inputPwd()); break;
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+				
+			}
+		} while(true);
 		
+		
+	}
+
 	}
 	
 	public String inputId() {
@@ -209,8 +235,23 @@ public class OrderMenu {
 		
 	}
 	
-	public void displayOProfileMenu() {
-		
+	public void displayOProfileMenu(String id) {
+		do {
+			System.out.println("----- 프로필 관리 -----");
+			System.out.println(id);
+			System.out.println("1. 비밀번호 수정");
+			System.out.println("2. 회원 탈퇴");
+			System.out.println("0. 뒤로 가기");
+			System.out.print("메뉴 선택 : ");
+			int no = sc.nextInt();
+			
+			switch(no) {
+			case 1 : owc.modifyPassword(id, inputPwd()); displayOwnerLogin();
+			case 2 : owc.deleteOwner(id); displayOwnerLogin();
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다.다시 입력해주세요. \n");
+			}
+		} while(true);
 	}
 
 }
