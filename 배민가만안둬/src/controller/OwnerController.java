@@ -52,16 +52,6 @@ public class OwnerController {
 		}
 	}
 
-	public void deleteOwner(String id) {
-		int result = ows.deleteOwner(id);
-		
-		if(result > 0) {
-			rv.displayDmlResult("deleteSuccess");
-		} else {
-			rv.displayDmlResult("deleteFailed");
-		}
-	}
-
 	public void createNewMenu(String menu, int price) {
 		int result = ows.createMenu(menu, price);
 		

@@ -78,11 +78,6 @@
            SET OWNER_PWD = ?
          WHERE OWNER_ID = ?
     </entry>
-    <entry key="deleteOwner">
-		DELETE
-		  FROM TBL_OWNER
-		 WHERE OWNER_ID = ?
-    </entry>
     <entry key="createMenu">
 		INSERT INTO TBL_MENU
 		(

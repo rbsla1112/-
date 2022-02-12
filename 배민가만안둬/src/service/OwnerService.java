@@ -66,24 +66,6 @@ public class OwnerService {
 		return result;
 	}
 
-	public int deleteOwner(String id) {
-		Connection con = getConnection();
-		
-		int result = 0;
-		
-		result = ownerDAO.deleteOwner(con, id);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		close(con);
-		
-		return result;
-	}
-
 	public int createMenu(String menu, int price) {
 		Connection con = getConnection();
 		

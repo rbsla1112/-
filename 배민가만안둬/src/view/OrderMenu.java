@@ -67,6 +67,7 @@ public class OrderMenu {
 			System.out.println("----- 사장님 메뉴 -----");
 			System.out.println("1. 로그인");
 			System.out.println("2. 회원가입");
+			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
@@ -77,7 +78,7 @@ public class OrderMenu {
 				int result = owc.ownerLogin(inputId, inputPwd());
 				
 				if(result ==1) {
-					displayOwnerMenu(inputId); break;
+					displayManageMenu(inputId); break;
 				} else {
 					break;
 				}
@@ -111,25 +112,6 @@ public class OrderMenu {
 			switch(no) {
 			case 1 : displayOrderMenu(id); break;
 			case 2 : displayCProfileMenu(id); break;
-			case 0 : return;
-			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
-			}
-		} while(true);
-	}
-	
-	public void displayOwnerMenu(String id) {
-		do {
-			System.out.println("----- 사장님 메뉴 -----");
-			System.out.println("1. 식당 관리");
-			System.out.println("2. 프로필 관리");
-			System.out.println("0. 뒤로 가기");
-			System.out.print("메뉴 선택 : ");
-			int no = sc.nextInt();
-			sc.nextLine();
-			
-			switch(no) {
-			case 1 : displayManageMenu(id); break;
-			case 2 : displayOProfileMenu(id); break;
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
 			}
@@ -229,19 +211,22 @@ public class OrderMenu {
 	
 	public void displayManageMenu(String id) {
 		do {
-	        System.out.println("----- 메뉴 관리 -----");
-	        System.out.println("1. 메뉴 추가  ");
+	        System.out.println("----- 사장님 메뉴 -----");
+	        System.out.println(id);
+	        System.out.println("1. 메뉴 추가");
 	        System.out.println("2. 메뉴 수정");
 	        System.out.println("3. 메뉴 삭제");
+	        System.out.println("4. 비밀번호 수정");
 	        System.out.println("0. 돌아가기 ");
 	        System.out.print("메뉴 선택 : ");
 	        int no = sc.nextInt();
 	        sc.nextLine();
 
 	        switch(no) {
-	        case 1 : owc.createNewMenu(inputMenu(), inputPrice());
-	        case 2 : owc.modifyMenu(inputMenu(), inputPrice(), id);
-	        case 3 : owc.deleteMenu(inputMenu());
+	        case 1 : owc.createNewMenu(inputMenu(), inputPrice()); break;
+	        case 2 : owc.modifyMenu(inputMenu(), inputPrice(), id); break;
+	        case 3 : owc.deleteMenu(inputMenu()); break;
+	        case 4 : owc.modifyPassword(id, inputPwd()); displayOwnerLogin();
 	        case 0 : return;
 	        default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
 	        }
@@ -257,25 +242,4 @@ public class OrderMenu {
 		System.out.print("메뉴 가격 입력 : ");
 		return sc.nextInt();
 	}
-	
-	public void displayOProfileMenu(String id) {
-		do {
-			System.out.println("----- 프로필 관리 -----");
-			System.out.println(id);
-			System.out.println("1. 비밀번호 수정");
-			System.out.println("2. 회원 탈퇴");
-			System.out.println("0. 뒤로 가기");
-			System.out.print("메뉴 선택 : ");
-			int no = sc.nextInt();
-			sc.nextLine();
-			
-			switch(no) {
-			case 1 : owc.modifyPassword(id, inputPwd()); displayOwnerLogin();
-			case 2 : owc.deleteOwner(id); displayOwnerLogin();
-			case 0 : return;
-			default : System.out.println("잘못된 번호입니다.다시 입력해주세요. \n");
-			}
-		} while(true);
-	}
-
 }

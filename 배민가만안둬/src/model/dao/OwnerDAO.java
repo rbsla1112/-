@@ -121,26 +121,6 @@ public class OwnerDAO {
 		return result;
 	}
 
-	public int deleteOwner(Connection con, String id) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("deleteOwner");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, id);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
 	public int createMenu(Connection con, String menu, int price) {
 		PreparedStatement pstmt = null;
 		int result = 0;
