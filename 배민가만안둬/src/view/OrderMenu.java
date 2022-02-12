@@ -67,7 +67,7 @@ public class OrderMenu {
 			System.out.println("----- 사장님 메뉴 -----");
 			System.out.println("1. 로그인");
 			System.out.println("2. 회원가입");
-			System.out.print(" 메뉴 선택 : ");
+			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
 			
