@@ -26,13 +26,31 @@ public class OwnerService {
 		
 		int result = 0;
 		
-		result = OwnerDAO.deleteMenu(con, menuName);
+		result = ownerDAO.deleteMenu(con, menuName);
 		
 		if(result > 0) {
 			commit(con);
 		} else {
 			rollback(con);
 		}
+		return result;
+	}
+
+	public static int updateMenu(String menuName, int menuPrice) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = ownerDAO.updateMenu(con, menuName, menuPrice);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
 		return result;
 	}
 

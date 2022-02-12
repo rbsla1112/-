@@ -21,23 +21,28 @@ public class OwnerController {
 		return ownerList;
 	}
 
-	public void insertNewMenu() {
-		
-		Connection con = null;
-		
-		
-		
-		
-	}
 
 	public void deleteMenu(String menuName) {
 		
-		int deleteResult = OwnerService.deleteMenu(menuName);
+		int deleteResult = ows.deleteMenu(menuName);
 		
 		if(deleteResult > 0 ) {
 			rv.displayDmlResult("deleteSuccess");
 		} else {
 			rv.displayDmlResult("deleteFailed");
+		}
+		
+	}
+
+
+	public void modifyMenu(String menuName,int menuPrice) {
+		
+		int updateResult = ows.updateMenu(menuName, menuPrice);
+		
+		if(updateResult > 0) {
+			rv.displayDmlResult("updateSuccess");
+		} else {
+			rv.displayDmlResult("updateFailed");
 		}
 		
 	}

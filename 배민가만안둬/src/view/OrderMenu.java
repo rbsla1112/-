@@ -244,15 +244,31 @@ public class OrderMenu {
 		sc.nextLine();
 		
 		switch(no) {
-		case 1 : owc.insertNewMenu(); //메뉴 추가 
-		case 2 : owc.updateNewMenu(); //메뉴 수정
-		case 3 : owc.deleteMenu(); //메뉴 삭제
+		case 1 : owc.createMenu(); //메뉴 추가 
+		case 2 : owc.modifyMenu(updateMenuName(), updatePrice());
+		case 3 : owc.deleteMenu(deleteMenu()); //메뉴 삭제
 		case 0 : return;
 		default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
 		}
 	} while(true);
 
  }
+
+
+	private String updateMenuName() {
+		System.out.print("수정할 메뉴명을 입력하세요 : ");
+		return sc.nextLine();
+	}
+	
+	private int updatePrice() {
+		System.out.print("수정할 가격을 입력하세요 :");
+		return sc.nextInt();
+	}
+	
+	private String deleteMenu() {
+		System.out.print("삭제할 메뉴 이름을 입력하세요 : ");
+		return sc.nextLine();
+	}
 	
 
 	public void displayOProfileMenu() {
