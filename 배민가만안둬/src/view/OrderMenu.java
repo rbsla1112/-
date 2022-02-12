@@ -140,7 +140,7 @@ public class OrderMenu {
 			System.out.println("----- 주문 가능 메뉴 -----");
 			List<MenuDTO> menuList = orc.selectMenuByOwner(inputOwner);
 			for(MenuDTO menu : menuList) {
-				System.out.println(menu.getMenuName() + "\t" + menu.getMenuPrice());
+				System.out.println(menu.getMenuName() + "     \t" + menu.getMenuPrice());
 			}
 			
 			System.out.print("주문하실 메뉴를 선택해주세요 : ");
