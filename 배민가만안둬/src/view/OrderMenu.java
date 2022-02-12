@@ -225,7 +225,7 @@ public class OrderMenu {
 	        sc.nextLine();
 
 	        switch(no) {
-	        case 1 : owc.insertNewMenu(); //메뉴 추가 
+	        case 1 : owc.createNewMenu(insertMenu(), insertPrice()); //메뉴 추가 
 	        case 2 : owc.updateNewMenu(); //메뉴 수정
 	        case 3 : owc.deleteMenu(); //메뉴 삭제
 	        case 0 : return;
@@ -236,15 +236,18 @@ public class OrderMenu {
 		
 	}
 	
-	public String createMenu() {
+	public String insertMenu() {
 		System.out.print("추가할 메뉴명 입력 : ");
-		System.out.println("추가할 가격 입력 : ");
 		
 		return sc.nextLine();
 		
 	}
 	
-	
+	public String insertPrice() {
+		System.out.println("추가할 가격 입력 : ");
+		
+		return sc.nextLine();
+	}
 	
 
 	public void displayOProfileMenu() {
