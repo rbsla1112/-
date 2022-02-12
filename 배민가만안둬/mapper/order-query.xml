@@ -15,8 +15,16 @@
 		FROM TBL_CUSTOMER
 		WHERE CUSTOMER_ID = ?
 	</entry>
+	<entry key="ownerLogin">
+		SELECT OWNER_ID, OWNER_PWD
+		  FROM TBL_OWNER
+		 WHERE OWNER_ID = ? 
+	</entry>
 	<entry key="customerSignup">
 		INSERT INTO TBL_CUSTOMER (CUSTOMER_ID, CUSTOMER_PWD) VALUES (?, ?)
+	</entry>
+	<entry key="ownerSignup">
+		INSERT INTO TBL_OWNER (OWNER_ID, OWNER_PWD) VALUES (?, ?)
 	</entry>
 	<entry key="insertOrder">
 		INSERT INTO TBL_ORDERLIST

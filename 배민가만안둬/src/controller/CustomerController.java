@@ -31,5 +31,7 @@ public class CustomerController {
 			rv.displayDmlResult("signupinsertFailed");
 		}
 	}
+	//사장 로그인 
+
 	
 }

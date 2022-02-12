@@ -64,6 +64,30 @@ public class OrderMenu {
 	
 	// owner로 다 바꾸기
 	public void displayOwnerLogin() {
+		do {
+			System.out.println("----- 사장님 메뉴 -----");
+			System.out.println("1. 로그인");
+			System.out.println("2. 회원가입");
+			System.out.print(" 메뉴 선택 : ");
+			int no = sc.nextInt();
+			
+			switch(no) {
+			case 1 :
+				String inputId = inputId();
+				int result = owc.ownerLogin(inputId, inputPwd());
+				
+				if(result ==1) {
+					displayOwnerMenu(inputId); break;
+				} else {
+					break;
+				}
+			case 2 : owc.ownerSignup(inputId(), inputPwd()); break;
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+				
+			}
+		} while(true);
+		
 		
 	}
 	
@@ -96,7 +120,7 @@ public class OrderMenu {
 		} while(true);
 	}
 	
-	public void displayOwnerMenu() {
+	public void displayOwnerMenu(String id) {
 		do {
 			System.out.println("----- 사장님 메뉴 -----");
 			System.out.println("1. 식당 관리");
@@ -192,6 +216,7 @@ public class OrderMenu {
 		
 	}
 	
+	//내꺼
 	public void displayOProfileMenu() {
 		
 	}
