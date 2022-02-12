@@ -5,7 +5,7 @@ public class OwnerDTO {
 	private String ownerId;
 	private String ownerPwd;
 	
-	OwnerDTO() {}
+	public OwnerDTO() {}
 
 	public OwnerDTO(String ownerId, String ownerPwd) {
 		super();
