@@ -20,4 +20,32 @@ public class OwnerService {
 		return ownerList;
 	}
 
+	public OwnerDTO login(String id, String pwd) {
+		Connection con = getConnection();
+		
+		OwnerDTO owner = ownerDAO.login(con, id);
+		
+		close(con);
+		
+		return owner;
+	}
+
+	public int signup(String id, String pwd) {
+Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = ownerDAO.signup(con, id, pwd);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+		
+		return result;
+	}
+
 }
