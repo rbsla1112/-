@@ -102,4 +102,47 @@ public class OwnerDAO {
 		
 		return result;
 	}
+
+	public int updatePassword(Connection con, String id, String inputPwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateOwnerPassword");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, inputPwd);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteOwner(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteOwner");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 }

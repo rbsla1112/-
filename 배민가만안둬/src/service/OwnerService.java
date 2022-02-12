@@ -54,6 +54,8 @@ public class OwnerService {
 		
 		int result = 0;
 		
+		result = ownerDAO.updatePassword(con, id, inputPwd);
+		
 		if(result > 0) {
 			commit(con);
 		} else {
@@ -69,6 +71,8 @@ public class OwnerService {
 		Connection con = getConnection();
 		
 		int result = 0;
+		
+		result = ownerDAO.deleteOwner(con, id);
 		
 		if(result > 0) {
 			commit(con);

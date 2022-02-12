@@ -64,24 +64,24 @@ public class OrderMenu {
 	
 	public void displayOwnerLogin() {
 		do {
-			System.out.println("----- 고객 메뉴 -----");
+			System.out.println("----- 사장님 메뉴 -----");
 			System.out.println("1. 로그인");
 			System.out.println("2. 회원가입");
-			System.out.println("0. 뒤로 가기");
-			System.out.print("메뉴 선택 : ");
+			System.out.print(" 메뉴 선택 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
 			
 			switch(no) {
-			case 1 : 
+			case 1 :
 				String inputId = inputId();
-				int result = cc.customerLogin(inputId, inputPwd());
-				if(result == 1) {
-					displayCustomerMenu(inputId); break;
+				int result = owc.ownerLogin(inputId, inputPwd());
+				
+				if(result ==1) {
+					displayOwnerMenu(inputId); break;
 				} else {
 					break;
 				}
-			case 2 : cc.customerSignup(inputId(), inputPwd()); break;
+			case 2 : owc.ownerSignup(inputId(), inputPwd()); break;
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
 			}

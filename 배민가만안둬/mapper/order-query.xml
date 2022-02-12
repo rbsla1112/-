@@ -65,4 +65,14 @@
 		  FROM TBL_CUSTOMER
 		 WHERE CUSTOMER_ID = ?
 	</entry>
+	<entry key="updateOwnerPassword">
+		UPDATE TBL_OWNER
+           SET OWNER_PWD = ?
+         WHERE OWNER_ID = ?
+    </entry>
+    <entry key="deleteOwner">
+		DELETE
+		  FROM TBL_OWNER
+		 WHERE OWENR_ID = ?
+    </entry>
 </properties>
