@@ -1,34 +1,32 @@
 package model.dto;
 
+import java.util.List;
+
 public class OrderlistDTO {
 	private int orderCode;
-	private int menuCode;
 	private String ownerId;
 	private String customerId;
-	private int totalOrderAmount;
+	private String orderDateTime;
 	private int totalOrderPrice;
 	private int point;
+	private List<OrderDTO> orderMenuList;
 	
 	public OrderlistDTO() {}
 
-	public OrderlistDTO(int orderCode, int menuCode, String ownerId, String customerId, int totalOrderAmount,
-			int totalOrderPrice, int point) {
+	public OrderlistDTO(int orderCode, String ownerId, String customerId, String orderDateTime, int totalOrderPrice,
+			int point, List<OrderDTO> orderMenuList) {
 		super();
 		this.orderCode = orderCode;
-		this.menuCode = menuCode;
 		this.ownerId = ownerId;
 		this.customerId = customerId;
-		this.totalOrderAmount = totalOrderAmount;
+		this.orderDateTime = orderDateTime;
 		this.totalOrderPrice = totalOrderPrice;
 		this.point = point;
+		this.orderMenuList = orderMenuList;
 	}
 
 	public int getOrderCode() {
 		return orderCode;
-	}
-
-	public int getMenuCode() {
-		return menuCode;
 	}
 
 	public String getOwnerId() {
@@ -39,8 +37,8 @@ public class OrderlistDTO {
 		return customerId;
 	}
 
-	public int getTotalOrderAmount() {
-		return totalOrderAmount;
+	public String getOrderDateTime() {
+		return orderDateTime;
 	}
 
 	public int getTotalOrderPrice() {
@@ -51,12 +49,12 @@ public class OrderlistDTO {
 		return point;
 	}
 
-	public void setOrderCode(int orderCode) {
-		this.orderCode = orderCode;
+	public List<OrderDTO> getOrderMenuList() {
+		return orderMenuList;
 	}
 
-	public void setMenuCode(int menuCode) {
-		this.menuCode = menuCode;
+	public void setOrderCode(int orderCode) {
+		this.orderCode = orderCode;
 	}
 
 	public void setOwnerId(String ownerId) {
@@ -67,8 +65,8 @@ public class OrderlistDTO {
 		this.customerId = customerId;
 	}
 
-	public void setTotalOrderAmount(int totalOrderAmount) {
-		this.totalOrderAmount = totalOrderAmount;
+	public void setOrderDateTime(String orderDateTime) {
+		this.orderDateTime = orderDateTime;
 	}
 
 	public void setTotalOrderPrice(int totalOrderPrice) {
@@ -79,10 +77,14 @@ public class OrderlistDTO {
 		this.point = point;
 	}
 
+	public void setOrderMenuList(List<OrderDTO> orderMenuList) {
+		this.orderMenuList = orderMenuList;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderlistDTO [orderCode=" + orderCode + ", menuCode=" + menuCode + ", ownerId=" + ownerId
-				+ ", customerId=" + customerId + ", totalOrderAmount=" + totalOrderAmount + ", totalOrderPrice="
-				+ totalOrderPrice + ", point=" + point + "]";
+		return "OrderlistDTO [orderCode=" + orderCode + ", ownerId=" + ownerId + ", customerId=" + customerId
+				+ ", orderDateTime=" + orderDateTime + ", totalOrderPrice=" + totalOrderPrice + ", point=" + point
+				+ ", orderMenuList=" + orderMenuList + "]";
 	}
 }

@@ -3,6 +3,8 @@ package view;
 public class ResultView {
 	public void displayDmlResult(String code) {
 		switch(code) {
+		case "loginSuccess" : System.out.println("로그인에 성공했습니다."); break;
+		case "loginFailed" : System.out.println("로그인에 실패했습니다."); break;
 		case "signupinsertSuccess" : System.out.println("회원 가입에 성공했습니다."); break;
 		case "signupinsertFailed" : System.out.println("회원 가입에 실패했습니다."); break;
 		case "insertSuccess" : System.out.println("데이터 추가에 성공했습니다."); break;

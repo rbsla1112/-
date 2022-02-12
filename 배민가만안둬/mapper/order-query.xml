@@ -10,4 +10,12 @@
 		WHERE ORDERABLE_STATUS = 'Y'
 		AND OWNER_ID = ?
 	</entry>
+	<entry key="customerLogin">
+		SELECT CUSTOMER_ID, CUSTOMER_PWD
+		FROM CUSTOMER
+		WHERE CUSTOMER_ID = ?
+	</entry>
+	<entry key="customerSignup">
+		INSERT INTO CUSTOMER (CUSTOMER_ID, CUSTOMER_PWD) VALUES (?, ?)
+	</entry>
 </properties>
