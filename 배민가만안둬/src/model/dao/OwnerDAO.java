@@ -50,4 +50,56 @@ public class OwnerDAO {
 		return ownerList;
 	}
 
+	public OwnerDTO login(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		OwnerDTO owner = null;
+		
+		String query = prop.getProperty("ownerLogin");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				owner = new OwnerDTO();
+				
+				owner.setOwnerId(rset.getString("OWNER_ID"));
+				owner.setOwnerPwd(rset.getString("OWNER_PWD"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return owner;
+	}
+
+	public int signup(Connection con, String id, String pwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("ownerSignup");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 }
