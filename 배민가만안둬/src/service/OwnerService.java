@@ -84,4 +84,58 @@ public class OwnerService {
 		return result;
 	}
 
+	public int createMenu(String menu, int price) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = ownerDAO.createMenu(con, menu, price);
+		
+		if(result >0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int updateMenu(String menu, int price, int menuCode) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = ownerDAO.updateMenu(con, menu, price, menuCode);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int deleteMenu(String menuName) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = ownerDAO.deleteMenu(con, menuName);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 }

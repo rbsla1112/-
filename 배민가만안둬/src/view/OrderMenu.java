@@ -228,7 +228,34 @@ public class OrderMenu {
 	}
 	
 	public void displayManageMenu(String id) {
-		
+		do {
+	        System.out.println("----- 메뉴 관리 -----");
+	        System.out.println("1. 메뉴 추가  ");
+	        System.out.println("2. 메뉴 수정");
+	        System.out.println("3. 메뉴 삭제");
+	        System.out.println("0. 돌아가기 ");
+	        System.out.print("메뉴 선택 : ");
+	        int no = sc.nextInt();
+	        sc.nextLine();
+
+	        switch(no) {
+	        case 1 : owc.createNewMenu(inputMenu(), inputPrice());
+	        case 2 : owc.modifyMenu(inputMenu(), inputPrice(), id);
+	        case 3 : owc.deleteMenu(inputMenu());
+	        case 0 : return;
+	        default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+	        }
+	    } while(true);
+	}
+	
+	public String inputMenu() {
+		System.out.print("메뉴 이름 입력 : ");
+		return sc.nextLine();
+	}
+	
+	public int inputPrice() {
+		System.out.print("메뉴 가격 입력 : ");
+		return sc.nextInt();
 	}
 	
 	public void displayOProfileMenu(String id) {

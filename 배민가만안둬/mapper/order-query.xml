@@ -81,6 +81,36 @@
     <entry key="deleteOwner">
 		DELETE
 		  FROM TBL_OWNER
-		 WHERE OWENR_ID = ?
+		 WHERE OWNER_ID = ?
     </entry>
+    <entry key="createMenu">
+		INSERT INTO TBL_MENU
+		(
+		  MENU_CODE
+		, MENU_NAME
+		, MENU_PRICE
+		, OWNER_ID
+		, ORDERABLE_STATUS
+		)
+		VALUES
+		(
+		  SEQ_MENU_CODE.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		)
+	</entry>
+	<entry key="updateMenu">
+ 		UPDATE TBL_MENU
+ 		   SET MENU_NAME = ?
+ 		   SET MENU_PRICE = ?
+ 		 WHERE MENU_CODE = ?
+ 	</entry>
+ 	<entry key="deleteMenu">
+ 		DELETE
+		  FROM TBL_MENU
+		 WHERE MENU_NAME = ?
+	</entry>
 </properties>

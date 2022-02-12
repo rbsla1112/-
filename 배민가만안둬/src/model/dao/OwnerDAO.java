@@ -141,4 +141,65 @@ public class OwnerDAO {
 		return result;
 	}
 
+	public int createMenu(Connection con, String menu, int price) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("createMenu");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, menu);
+			pstmt.setInt(2, price);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMenu(Connection con, String menu, int price, int menuCode) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateMenu");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, menu);
+			pstmt.setInt(2, price);
+			pstmt.setInt(3, menuCode);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteMenu(Connection con, String menuName) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteMenu");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, menuName);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
