@@ -9,6 +9,7 @@ import static common.JDBCTemplate.*;
 import model.dto.OwnerDTO;
 
 public class OwnerDAO {
+	
 	private Properties prop = new Properties();
 	
 	public OwnerDAO() {
@@ -48,6 +49,26 @@ public class OwnerDAO {
 		}
 		
 		return ownerList;
+	}
+
+	public static int deleteMenu(Connection con, String menuName) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteMenu");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, menuName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		result = pstmt.executeUpdate();
+		
+		return result;
 	}
 
 }

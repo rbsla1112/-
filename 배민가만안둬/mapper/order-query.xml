@@ -65,4 +65,12 @@
 		  FROM TBL_CUSTOMER
 		 WHERE CUSTOMER_ID = ?
 	</entry>
+	<entry key="deleteMenu">
+		DELETE
+			MENU_CODE
+		  , MENU_NAME
+		  , MENU_PRICE
+		FROM TBL_MENU
+	   WHERE MENU_NAME = ?
+	</entry>
 </properties>

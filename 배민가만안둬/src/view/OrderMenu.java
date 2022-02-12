@@ -1,5 +1,7 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.*;
 
 import controller.CustomerController;
@@ -63,6 +65,29 @@ public class OrderMenu {
 	}
 	
 	public void displayOwnerLogin() {
+		do {
+			System.out.println("----- 사장님 메뉴 -----");
+			System.out.println("1. 로그인");
+			System.out.println("2. 회원가입");
+			System.out.println(" 메뉴 선택 : ");
+			int no = sc.nextInt();
+			
+			switch(no) {
+			case 1 :
+				String inputId = inputId();
+				int result = owc.ownerLogin(inputId, inputPwd());
+				
+				if(result ==1) {
+					displayOwnerMenu(inputId); break;
+				} else {
+					break;
+				}
+			case 2 : owc.ownerSignup(inputId(), inputPwd()); break;
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+				
+			}
+		} while(true);
 		
 	}
 	
@@ -205,10 +230,31 @@ public class OrderMenu {
 		} while(true);
 	}
 	
+	//
 	public void displayManageMenu() {
+		//////////////사장님 메뉴 ////////////////////////////////
+	do {
+		System.out.println("----- 메뉴 관리 -----");
+		System.out.println("1. 메뉴 추가  ");
+		System.out.println("2. 메뉴 수정");
+		System.out.println("3. 메뉴 삭제");
+		System.out.println("0. 돌아가기 ");
+		System.out.print("메뉴 선택 : ");
+		int no = sc.nextInt();
+		sc.nextLine();
 		
-	}
+		switch(no) {
+		case 1 : owc.insertNewMenu(); //메뉴 추가 
+		case 2 : owc.updateNewMenu(); //메뉴 수정
+		case 3 : owc.deleteMenu(); //메뉴 삭제
+		case 0 : return;
+		default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+		}
+	} while(true);
+
+ }
 	
+
 	public void displayOProfileMenu() {
 		
 	}
