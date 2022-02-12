@@ -3,8 +3,7 @@ package model.dao;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 import static common.JDBCTemplate.*;
 
@@ -107,6 +106,8 @@ public class CustomerDAO {
 			pstmt.setString(1, id);
 			
 			rset = pstmt.executeQuery();
+			
+			orderHistory = new ArrayList<>();
 			
 			while(rset.next()) {
 				OrderlistDTO orderList = new OrderlistDTO();

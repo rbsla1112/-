@@ -196,7 +196,7 @@ public class OrderMenu {
 			sc.nextLine();
 			
 			switch(no) {
-			case 1 : cc.modifyPassword(id, inputPwd()); break;
+			case 1 : cc.modifyPassword(id, inputPwd()); displayCustomerLogin();
 			case 2 : cc.selectOrderHistory(id); break;
 			case 3 : cc.deleteCustomer(id); displayCustomerLogin();
 			case 0 : return;
