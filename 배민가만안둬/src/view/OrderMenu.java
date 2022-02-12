@@ -70,6 +70,7 @@ public class OrderMenu {
 			System.out.println("2. 회원가입");
 			System.out.print(" 메뉴 선택 : ");
 			int no = sc.nextInt();
+			sc.nextLine();
 			
 			switch(no) {
 			case 1 :
@@ -213,10 +214,39 @@ public class OrderMenu {
 	}
 	
 	public void displayManageMenu() {
+		do {
+	        System.out.println("----- 메뉴 관리 -----");
+	        System.out.println("1. 메뉴 추가  ");
+	        System.out.println("2. 메뉴 수정");
+	        System.out.println("3. 메뉴 삭제");
+	        System.out.println("0. 돌아가기 ");
+	        System.out.print("메뉴 선택 : ");
+	        int no = sc.nextInt();
+	        sc.nextLine();
+
+	        switch(no) {
+	        case 1 : owc.insertNewMenu(); //메뉴 추가 
+	        case 2 : owc.updateNewMenu(); //메뉴 수정
+	        case 3 : owc.deleteMenu(); //메뉴 삭제
+	        case 0 : return;
+	        default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+	        }
+	    } while(true);
+
 		
 	}
 	
-	//내꺼
+	public String createMenu() {
+		System.out.print("추가할 메뉴명 입력 : ");
+		System.out.println("추가할 가격 입력 : ");
+		
+		return sc.nextLine();
+		
+	}
+	
+	
+	
+
 	public void displayOProfileMenu() {
 		
 	}

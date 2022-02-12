@@ -42,5 +42,19 @@ public class OwnerController {
 		}
 		
 	}
+
+	public void createNewMenu(String menu, String price) {
+		
+		int registResult = ows.createMenu(menu, price);
+		
+		if(registResult >0) {
+			rv.displayDmlResult("insertSuccess");
+			
+		} else {
+			rv.displayDmlResult("insertFailed");
+		}
+		
+		
+	}
 	
 }

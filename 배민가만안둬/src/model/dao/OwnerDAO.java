@@ -103,4 +103,25 @@ public class OwnerDAO {
 		return result;
 	}
 
+	public int createMenu(Connection con, String menu, String price) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("createMenu");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, menu);
+			pstmt.setString(2, price);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 }

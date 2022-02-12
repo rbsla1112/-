@@ -50,4 +50,22 @@ public class OwnerService {
 		return result;
 	}
 
+	public int createMenu(String menu, String price) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = ownerDAO.createMenu(con, menu, price);
+		
+		if(result >0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 }
