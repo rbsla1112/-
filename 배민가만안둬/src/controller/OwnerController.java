@@ -39,4 +39,24 @@ public class OwnerController {
 			rv.displayDmlResult("signupinsertFailed");
 		}
 	}
+
+	public void modifyPassword(String id, String inputPwd) {
+		int result = ows.updatePassword(id, inputPwd);
+		
+		if(result > 0) {
+			rv.displayDmlResult("updateSuccess");
+		} else {
+			rv.displayDmlResult("updateFailed");
+		}
+	}
+
+	public void deleteOwner(String id) {
+		int result = ows.deleteOwner(id);
+		
+		if(result > 0) {
+			rv.displayDmlResult("deleteSuccess");
+		} else {
+			rv.displayDmlResult("deleteFailed");
+		}
+	}
 }

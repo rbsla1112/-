@@ -232,7 +232,22 @@ public class OrderMenu {
 	}
 	
 	public void displayOProfileMenu(String id) {
-		
+		do {
+			System.out.println("----- 프로필 관리 -----");
+			System.out.println(id);
+			System.out.println("1. 비밀번호 수정");
+			System.out.println("2. 회원 탈퇴");
+			System.out.println("0. 뒤로 가기");
+			System.out.print("메뉴 선택 : ");
+			int no = sc.nextInt();
+			
+			switch(no) {
+			case 1 : owc.modifyPassword(id, inputPwd()); displayOwnerLogin();
+			case 2 : owc.deleteOwner(id); displayOwnerLogin();
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다.다시 입력해주세요. \n");
+			}
+		} while(true);
 	}
 
 }
