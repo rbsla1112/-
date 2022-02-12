@@ -62,18 +62,17 @@ public class OrderMenu {
 		} while(true);
 	}
 	
-	// owner로 다 바꾸기
 	public void displayOwnerLogin() {
 		
 	}
 	
 	public String inputId() {
-		System.out.print("아이디 : ");
+		System.out.print("아이디 입력 : ");
 		return sc.nextLine();
 	}
 	
 	public String inputPwd() {
-		System.out.print("비밀번호 : ");
+		System.out.print("비밀번호 입력 : ");
 		return sc.nextLine();
 	}
 	
@@ -185,7 +184,25 @@ public class OrderMenu {
 	}
 	
 	public void displayCProfileMenu(String id) {
-		
+		do {
+			System.out.println("----- 프로필 관리 -----");
+			System.out.println(id + "님");
+			System.out.println("1. 비밀번호 수정");
+			System.out.println("2. 주문내역 조회");
+			System.out.println("3. 회원 탈퇴");
+			System.out.println("0. 뒤로 가기");
+			System.out.print("메뉴 선택 : ");
+			int no = sc.nextInt();
+			sc.nextLine();
+			
+			switch(no) {
+			case 1 : cc.modifyPassword(id, inputPwd()); break;
+			case 2 : cc.selectOrderHistory(id); break;
+			case 3 : cc.deleteCustomer(id); displayCustomerLogin();
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
+			}
+		} while(true);
 	}
 	
 	public void displayManageMenu() {

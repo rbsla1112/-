@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.List;
+
 import model.dto.CustomerDTO;
+import model.dto.OrderlistDTO;
 import service.CustomerService;
 import view.ResultView;
 
@@ -29,6 +32,37 @@ public class CustomerController {
 			rv.displayDmlResult("signupinsertSuccess");
 		} else {
 			rv.displayDmlResult("signupinsertFailed");
+		}
+	}
+
+	public void modifyPassword(String id, String inputPwd) {
+		int result = customerService.updatePassword(id, inputPwd);
+		
+		if(result > 0) {
+			rv.displayDmlResult("updateSuccess");
+		} else {
+			rv.displayDmlResult("updateFailed");
+		}
+	}
+
+	public void selectOrderHistory(String id) {
+		List<OrderlistDTO> orderHistory = customerService.selectOrderHistory(id);
+		
+		if(!orderHistory.isEmpty()) {
+			rv.displayDmlResult("selectSuccess");
+			rv.display(orderHistory);
+		} else {
+			rv.displayDmlResult("selectFailed");
+		}
+	}
+
+	public void deleteCustomer(String id) {
+		int result = customerService.deleteCustomer(id);
+		
+		if(result > 0) {
+			rv.displayDmlResult("deleteSuccess");
+		} else {
+			rv.displayDmlResult("deleteFailed");
 		}
 	}
 	

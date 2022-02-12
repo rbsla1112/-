@@ -3,11 +3,13 @@ package model.dao;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.util.List;
 import java.util.Properties;
 
 import static common.JDBCTemplate.*;
 
 import model.dto.CustomerDTO;
+import model.dto.OrderlistDTO;
 
 public class CustomerDAO {
 	private Properties prop = new Properties();
@@ -60,6 +62,81 @@ public class CustomerDAO {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updatePassword(Connection con, String id, String inputPwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updatePassword");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, inputPwd);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<OrderlistDTO> selectOrderHistory(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<OrderlistDTO> orderHistory = null;
+		
+		String query = prop.getProperty("selectOrderHistory");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				OrderlistDTO orderList = new OrderlistDTO();
+				orderList.setOrderCode(rset.getInt("ORDER_CODE"));
+				orderList.setOwnerId(rset.getString("OWNER_ID"));
+				orderList.setCustomerId(rset.getString("CUSTOMER_ID"));
+				orderList.setOrderDateTime(rset.getString("ORDER_DATE_TIME"));
+				orderList.setTotalOrderPrice(rset.getInt("TOTAL_ORDER_PRICE"));
+				
+				orderHistory.add(orderList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return orderHistory;
+	}
+
+	public int deleteCustomer(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteCustomer");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

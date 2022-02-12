@@ -6,14 +6,14 @@
 	</entry>
 	<entry key="selectMenuByOwner">
 		SELECT MENU_CODE, MENU_NAME, MENU_PRICE, OWNER_ID, ORDERABLE_STATUS
-		FROM TBL_MENU
-		WHERE ORDERABLE_STATUS = 'Y'
-		AND OWNER_ID = ?
+		  FROM TBL_MENU
+		 WHERE ORDERABLE_STATUS = 'Y'
+		   AND OWNER_ID = ?
 	</entry>
 	<entry key="customerLogin">
 		SELECT CUSTOMER_ID, CUSTOMER_PWD
-		FROM TBL_CUSTOMER
-		WHERE CUSTOMER_ID = ?
+		  FROM TBL_CUSTOMER
+		 WHERE CUSTOMER_ID = ?
 	</entry>
 	<entry key="customerSignup">
 		INSERT INTO TBL_CUSTOMER (CUSTOMER_ID, CUSTOMER_PWD) VALUES (?, ?)
@@ -49,5 +49,20 @@
 		, ?
 		, ?
 		)
+	</entry>
+	<entry key="updatePassword">
+		UPDATE TBL_CUSTOMER
+           SET CUSTOMER_PWD = ?
+         WHERE CUSTOMER_ID = ?
+	</entry>
+	<entry key="selectOrderHistory">
+		SELECT *
+		  FROM TBL_ORDERLIST
+		 WHERE CUSTOMER_ID = ?
+	</entry>
+	<entry key="deleteCustomer">
+		DELETE
+		  FROM TBL_CUSTOMER
+		 WHERE CUSTOMER_ID = ?
 	</entry>
 </properties>
