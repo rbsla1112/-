@@ -240,6 +240,7 @@ public class OrderMenu {
 			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
+			sc.nextLine();
 			
 			switch(no) {
 			case 1 : owc.modifyPassword(id, inputPwd()); displayOwnerLogin();
