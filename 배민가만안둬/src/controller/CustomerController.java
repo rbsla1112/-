@@ -19,7 +19,7 @@ public class CustomerController {
 			rv.displayDmlResult("loginFailed");
 		}
 		
-		return 0;
+		return result;
 	}
 
 	public void customerSignup(String id, String pwd) {

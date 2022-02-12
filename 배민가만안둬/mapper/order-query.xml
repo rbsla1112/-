@@ -2,20 +2,52 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectAllOwner">
-		SELECT OWNER_ID, OWNER_PWD FROM OWNER
+		SELECT OWNER_ID, OWNER_PWD FROM TBL_OWNER
 	</entry>
 	<entry key="selectMenuByOwner">
 		SELECT MENU_CODE, MENU_NAME, MENU_PRICE, OWNER_ID, ORDERABLE_STATUS
-		FROM MENU
+		FROM TBL_MENU
 		WHERE ORDERABLE_STATUS = 'Y'
 		AND OWNER_ID = ?
 	</entry>
 	<entry key="customerLogin">
 		SELECT CUSTOMER_ID, CUSTOMER_PWD
-		FROM CUSTOMER
+		FROM TBL_CUSTOMER
 		WHERE CUSTOMER_ID = ?
 	</entry>
 	<entry key="customerSignup">
-		INSERT INTO CUSTOMER (CUSTOMER_ID, CUSTOMER_PWD) VALUES (?, ?)
+		INSERT INTO TBL_CUSTOMER (CUSTOMER_ID, CUSTOMER_PWD) VALUES (?, ?)
+	</entry>
+	<entry key="insertOrder">
+		INSERT INTO TBL_ORDERLIST
+		(
+		  ORDER_CODE
+		, OWNER_ID
+		, CUSTOMER_ID
+		, ORDER_DATE_TIME
+		, TOTAL_ORDER_PRICE
+		)
+		VALUES
+		(
+		  SEQ_ORDER_CODE.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, ?
+		)
+	</entry>
+	<entry key="insertOrderMenu">
+		INSERT INTO TBL_ORDER
+		(
+		  ORDER_CODE
+		, MENU_CODE
+		, AMOUNT
+		)
+		VALUES
+		(
+		  SEQ_ORDER_CODE.CURRVAL
+		, ?
+		, ?
+		)
 	</entry>
 </properties>

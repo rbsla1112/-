@@ -7,6 +7,8 @@ import java.util.*;
 import static common.JDBCTemplate.*;
 
 import model.dto.MenuDTO;
+import model.dto.OrderDTO;
+import model.dto.OrderlistDTO;
 
 public class OrderDAO {
 	private Properties prop = new Properties();
@@ -53,6 +55,50 @@ public class OrderDAO {
 		}
 		
 		return menuList;
+	}
+
+	public int insertOrder(Connection con, OrderlistDTO orderList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertOrder");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, orderList.getOwnerId());
+			pstmt.setString(2, orderList.getCustomerId());
+			pstmt.setString(3, orderList.getOrderDateTime());
+			pstmt.setInt(4, orderList.getTotalOrderPrice());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int insertOrderMenu(Connection con, OrderDTO orderMenu) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertOrderMenu");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, orderMenu.getMenuCode());
+			pstmt.setInt(2, orderMenu.getAmount());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

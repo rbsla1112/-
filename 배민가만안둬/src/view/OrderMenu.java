@@ -41,7 +41,7 @@ public class OrderMenu {
 			System.out.println("----- 고객 메뉴 -----");
 			System.out.println("1. 로그인");
 			System.out.println("2. 회원가입");
-			System.out.println("0. 종료");
+			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
@@ -51,7 +51,7 @@ public class OrderMenu {
 				String inputId = inputId();
 				int result = cc.customerLogin(inputId, inputPwd());
 				if(result == 1) {
-					displayCustomerMenu(inputId);
+					displayCustomerMenu(inputId); break;
 				} else {
 					break;
 				}
@@ -64,29 +64,7 @@ public class OrderMenu {
 	
 	// owner로 다 바꾸기
 	public void displayOwnerLogin() {
-		do {
-			System.out.println("----- 고객 메뉴 -----");
-			System.out.println("1. 로그인");
-			System.out.println("2. 회원가입");
-			System.out.println("0. 종료");
-			System.out.print("메뉴 선택 : ");
-			int no = sc.nextInt();
-			sc.nextLine();
-			
-			switch(no) {
-			case 1 : 
-				String inputId = inputId();
-				int result = cc.customerLogin(inputId, inputPwd());
-				if(result == 1) {
-					displayCustomerMenu(inputId);
-				} else {
-					break;
-				}
-			case 2 : cc.customerSignup(inputId(), inputPwd()); break;
-			case 0 : return;
-			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
-			}
-		} while(true);
+		
 	}
 	
 	public String inputId() {
@@ -104,7 +82,7 @@ public class OrderMenu {
 			System.out.println("----- 고객 메뉴 -----");
 			System.out.println("1. 주문");
 			System.out.println("2. 프로필 관리");
-			System.out.println("0. 메인으로 돌아가기");
+			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
@@ -123,7 +101,7 @@ public class OrderMenu {
 			System.out.println("----- 사장님 메뉴 -----");
 			System.out.println("1. 식당 관리");
 			System.out.println("2. 프로필 관리");
-			System.out.println("0. 메인으로 돌아가기");
+			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
@@ -197,15 +175,11 @@ public class OrderMenu {
 			System.out.println(orderMenu);
 		}
 		
-		System.out.print("별점(5점 만점) : ");
-		int point = sc.nextInt();
-		
 		Map<String, Object> requestMap = new HashMap<>();
 		requestMap.put("totalOrderPrice", totalOrderPrice);
 		requestMap.put("orderMenuList", orderMenuList);
 		requestMap.put("ownerId", inputOwner);
 		requestMap.put("customerId", id);
-		requestMap.put("point", point);
 		
 		orc.registOrder(requestMap);
 	}

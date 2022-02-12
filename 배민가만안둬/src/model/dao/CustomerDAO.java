@@ -14,7 +14,7 @@ public class CustomerDAO {
 	
 	public CustomerDAO() {
 		try {
-			prop.loadFromXML(new FileInputStream("mapper/order-query"));
+			prop.loadFromXML(new FileInputStream("mapper/order-query.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
