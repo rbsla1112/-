@@ -5,6 +5,7 @@ import java.sql.*;
 import static common.JDBCTemplate.*;
 
 import model.dao.OwnerDAO;
+import model.dto.MenuDTO;
 import model.dto.OwnerDTO;
 
 public class OwnerService {
@@ -66,32 +67,14 @@ public class OwnerService {
 		return result;
 	}
 
-	public int createMenu(String menu, int price) {
+	public int createMenu(MenuDTO menu) {
 		Connection con = getConnection();
 		
 		int result = 0;
 		
-		result = ownerDAO.createMenu(con, menu, price);
+		result = ownerDAO.createMenu(con, menu);
 		
 		if(result >0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		close(con);
-		
-		return result;
-	}
-
-	public int updateMenu(String menu, int price, int menuCode) {
-		Connection con = getConnection();
-		
-		int result = 0;
-		
-		result = ownerDAO.updateMenu(con, menu, price, menuCode);
-		
-		if(result > 0) {
 			commit(con);
 		} else {
 			rollback(con);

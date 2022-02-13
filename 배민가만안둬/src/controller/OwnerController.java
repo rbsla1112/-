@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import model.dto.MenuDTO;
 import model.dto.OwnerDTO;
@@ -52,35 +53,6 @@ public class OwnerController {
 		}
 	}
 
-	public void createNewMenu(String menu, int price) {
-		int result = ows.createMenu(menu, price);
-		
-		if(result > 0) {
-			rv.displayDmlResult("insertSuccess");
-		} else {
-			rv.displayDmlResult("insertFailed");
-		}
-	}
-
-	public void modifyMenu(String name, int price, String id) {
-		int menuCode = 0;
-		
-		List<MenuDTO> menuList = oc.selectMenuByOwner(id);
-		for(MenuDTO menu : menuList) {
-			if(menu.getMenuName().equals(name)) {
-				menuCode = menu.getMenuCode();
-			}
-		}
-		
-		int updateResult = ows.updateMenu(name, price, menuCode);
-		
-		if(updateResult > 0) {
-			rv.displayDmlResult("updateSuccess");
-		} else {
-			rv.displayDmlResult("updateFailed");
-		}
-	}
-
 	public void deleteMenu(String menuName) {
 		int deleteResult = ows.deleteMenu(menuName);
 		
@@ -88,6 +60,22 @@ public class OwnerController {
 			rv.displayDmlResult("deleteSuccess");
 		} else {
 			rv.displayDmlResult("deleteFailed");
+		}
+	}
+
+	public void createNewMenu(Map<String, String> inputMenu) {
+		MenuDTO menu = new MenuDTO();
+		menu.setMenuName(inputMenu.get("menuName"));
+		menu.setMenuPrice(Integer.valueOf(inputMenu.get("menuPrice")));
+		menu.setOwnerId(inputMenu.get("ownerId"));
+		menu.setOrderableStatus(inputMenu.get("orderableStatus"));
+		
+		int result = ows.createMenu(menu);
+		
+		if(result > 0) {
+			rv.displayDmlResult("insertSuccess");
+		} else {
+			rv.displayDmlResult("insertFailed");
 		}
 	}
 }

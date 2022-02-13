@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.*;
 import static common.JDBCTemplate.*;
 
+import model.dto.MenuDTO;
 import model.dto.OwnerDTO;
 
 public class OwnerDAO {
@@ -121,7 +122,7 @@ public class OwnerDAO {
 		return result;
 	}
 
-	public int createMenu(Connection con, String menu, int price) {
+	public int createMenu(Connection con, MenuDTO menu) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -129,28 +130,10 @@ public class OwnerDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, menu);
-			pstmt.setInt(2, price);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
-	public int updateMenu(Connection con, String menu, int price, int menuCode) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("updateMenu");
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, menu);
-			pstmt.setInt(2, price);
-			pstmt.setInt(3, menuCode);
+			pstmt.setString(1, menu.getMenuName());
+			pstmt.setInt(2, menu.getMenuPrice());
+			pstmt.setString(3, menu.getOwnerId());
+			pstmt.setString(4, menu.getOrderableStatus());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
