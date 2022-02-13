@@ -222,7 +222,8 @@ public class OrderMenu {
 	        System.out.println(id);
 	        System.out.println("1. 메뉴 추가");
 	        System.out.println("2. 메뉴 삭제");
-	        System.out.println("4. 비밀번호 수정");
+	        System.out.println("3. 메뉴 확인");
+	        System.out.println("3. 비밀번호 수정");
 	        System.out.println("0. 돌아가기 ");
 	        System.out.print("메뉴 선택 : ");
 	        int no = sc.nextInt();
@@ -230,7 +231,8 @@ public class OrderMenu {
 
 	        switch(no) {
 	        case 1 : owc.createNewMenu(inputMenu(id)); break;
-	        case 2 : owc.deleteMenu(inputMenuName()); break;
+	        case 2 : currentMenu(id); owc.deleteMenu(inputMenuName(), id); break;
+	        case 3 : currentMenu(id); break;
 	        case 4 : owc.modifyPassword(id, inputPwd()); displayOwnerLogin();
 	        case 0 : return;
 	        default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
@@ -243,24 +245,22 @@ public class OrderMenu {
 		return sc.nextLine();
 	}
 	
-	public int inputPrice() {
-		System.out.print("메뉴 가격 입력 : ");
-		int price = sc.nextInt();
-		sc.nextLine();
-		return price;
-	}
-	
-	public Map<String, String> inputMenu(String id) {
-		System.out.println("----- 현재 메뉴 목록 -----");
+	public void currentMenu(String id) {
+		System.out.println("\n----- 현재 메뉴 목록 -----");
 		List<MenuDTO> menuList = orc.selectMenuByOwner(id);
 		for(MenuDTO menuDTO : menuList) {
 			System.out.println(menuDTO.getMenuName() + "     \t" + menuDTO.getMenuPrice());
 		}
+		System.out.println();
+	}
+	
+	public Map<String, String> inputMenu(String id) {
+		currentMenu(id);
 		
 		Map<String, String> map = new HashMap<>();
 		
 		map.put("ownerId", id);
-		System.out.print("메뉴 이름 입력 : ");
+		System.out.print("추가할 메뉴 이름 입력 : ");
 		map.put("menuName", sc.nextLine());
 		System.out.print("메뉴 가격 입력 : ");
 		map.put("menuPrice", sc.nextLine());

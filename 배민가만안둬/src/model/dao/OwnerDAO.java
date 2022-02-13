@@ -145,7 +145,7 @@ public class OwnerDAO {
 		return result;
 	}
 
-	public int deleteMenu(Connection con, String menuName) {
+	public int deleteMenu(Connection con, String menuName, String id) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -154,6 +154,7 @@ public class OwnerDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, menuName);
+			pstmt.setString(2, id);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

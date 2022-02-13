@@ -53,8 +53,8 @@ public class OwnerController {
 		}
 	}
 
-	public void deleteMenu(String menuName) {
-		int deleteResult = ows.deleteMenu(menuName);
+	public void deleteMenu(String menuName, String id) {
+		int deleteResult = ows.deleteMenu(menuName, id);
 		
 		if(deleteResult > 0 ) {
 			rv.displayDmlResult("deleteSuccess");

@@ -85,12 +85,12 @@ public class OwnerService {
 		return result;
 	}
 
-	public int deleteMenu(String menuName) {
+	public int deleteMenu(String menuName, String id) {
 		Connection con = getConnection();
 		
 		int result = 0;
 		
-		result = ownerDAO.deleteMenu(con, menuName);
+		result = ownerDAO.deleteMenu(con, menuName, id);
 		
 		if(result > 0) {
 			commit(con);
