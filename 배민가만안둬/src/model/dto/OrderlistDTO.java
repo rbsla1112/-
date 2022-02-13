@@ -73,9 +73,8 @@ public class OrderlistDTO {
 
 	@Override
 	public String toString() {
-		return "OrderlistDTO [orderCode=" + orderCode + ", ownerId=" + ownerId + ", customerId=" + customerId
-				+ ", orderDateTime=" + orderDateTime + ", totalOrderPrice=" + totalOrderPrice + ", orderMenuList="
-				+ orderMenuList + "]";
+		return "[주문번호=" + orderCode + ", 상호명=" + ownerId
+				+ ", 주문일시=" + orderDateTime + ", 결제 금액=" + totalOrderPrice + "]";
 	}
 
 	
