@@ -223,7 +223,7 @@ public class OrderMenu {
 	        System.out.println("1. 메뉴 추가");
 	        System.out.println("2. 메뉴 삭제");
 	        System.out.println("3. 메뉴 확인");
-	        System.out.println("3. 비밀번호 수정");
+	        System.out.println("4. 비밀번호 수정");
 	        System.out.println("0. 돌아가기 ");
 	        System.out.print("메뉴 선택 : ");
 	        int no = sc.nextInt();
