@@ -191,8 +191,6 @@ public class OrderMenu {
 		
 		// 주문 횟수에 따른 등급 변경
 		cc.modifyGrade(id);
-		
-		// 리뷰 추가
 	}
 	
 	public void displayCProfileMenu(String id) {
