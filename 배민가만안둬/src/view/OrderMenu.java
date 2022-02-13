@@ -5,6 +5,7 @@ import java.util.*;
 import controller.CustomerController;
 import controller.OrderController;
 import controller.OwnerController;
+import model.dto.CustomerDTO;
 import model.dto.MenuDTO;
 import model.dto.OrderDTO;
 import model.dto.OwnerDTO;
@@ -184,15 +185,25 @@ public class OrderMenu {
 		requestMap.put("customerId", id);
 		
 		orc.registOrder(requestMap);
+		
+		// 주문 횟수 추가
+		cc.plusCount(id);
+		
+		// 주문 횟수에 따른 등급 변경
+		cc.modifyGrade(id);
+		
+		// 리뷰 추가
 	}
 	
 	public void displayCProfileMenu(String id) {
+		CustomerDTO customer = cc.selectCustomerById(id);
 		do {
 			System.out.println("----- 프로필 관리 -----");
-			System.out.println(id + "님");
+			System.out.println(id + "님 : " + customer.getGrade());
 			System.out.println("1. 비밀번호 수정");
 			System.out.println("2. 주문내역 조회");
-			System.out.println("3. 회원 탈퇴");
+			System.out.println("3. 리뷰 관리");
+			System.out.println("4. 회원 탈퇴");
 			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
@@ -201,7 +212,8 @@ public class OrderMenu {
 			switch(no) {
 			case 1 : cc.modifyPassword(id, inputPwd()); displayCustomerLogin();
 			case 2 : cc.selectOrderHistory(id); break;
-			case 3 : cc.deleteCustomer(id); displayCustomerLogin();
+			case 3 : /* 구현 */ break;
+			case 4 : cc.deleteCustomer(id); displayCustomerLogin();
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
 			}

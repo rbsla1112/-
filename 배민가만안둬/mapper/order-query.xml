@@ -108,4 +108,22 @@
 		  FROM TBL_MENU
 		 WHERE MENU_NAME = ?
 	</entry>
+	<entry key="plusCount">
+		UPDATE TBL_CUSTOMER
+		   SET COUNT = SEQ_COUNT.NEXTVAL
+		 WHERE CUSTOMER_ID = ?
+	</entry>
+	<entry key="modifyGrade">
+		UPDATE TBL_CUSTOMER
+		   SET GRADE = ?
+		 WHERE CUSTOMER_ID = ?
+	</entry>
+	<entry key="selectCustomerById">
+		SELECT CUSTOMER_ID
+			 , CUSTOMER_PWD
+			 , COUNT
+			 , GRADE
+		  FROM TBL_CUSTOMER
+		 WHERE CUSTOMER_ID = ?
+	</entry>
 </properties>

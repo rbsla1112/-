@@ -3,12 +3,17 @@ package model.dto;
 public class CustomerDTO {
 	private String customerId;
 	private String customerPwd;
+	private int count;
+	private String grade;
 	
 	public CustomerDTO() {}
 
-	@Override
-	public String toString() {
-		return "CustomerDTO [customerId=" + customerId + ", customerPwd=" + customerPwd + "]";
+	public CustomerDTO(String customerId, String customerPwd, int count, String grade) {
+		super();
+		this.customerId = customerId;
+		this.customerPwd = customerPwd;
+		this.count = count;
+		this.grade = grade;
 	}
 
 	public String getCustomerId() {
@@ -27,9 +32,25 @@ public class CustomerDTO {
 		this.customerPwd = customerPwd;
 	}
 
-	public CustomerDTO(String customerId, String customerPwd) {
-		super();
-		this.customerId = customerId;
-		this.customerPwd = customerPwd;
-	}	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	@Override
+	public String toString() {
+		return "CustomerDTO [customerId=" + customerId + ", customerPwd=" + customerPwd + ", count=" + count
+				+ ", grade=" + grade + "]";
+	}
 }

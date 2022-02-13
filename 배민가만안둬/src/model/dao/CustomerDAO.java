@@ -149,4 +149,86 @@ public class CustomerDAO {
 		return result;
 	}
 
+	public int plusCount(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("plusCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int modifyGrade(Connection con, String id, int count) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String grade = "";
+		if(count >= 3) {
+			grade = "SILVER";
+		} else if(count >= 6) {
+			grade = "GOLD";
+		} else {
+			grade = "BRONZE";
+		}
+		
+		String query = prop.getProperty("modifyGrade");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, grade);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public CustomerDTO selectCustomerById(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		CustomerDTO customer = null;
+		
+		String query = prop.getProperty("selectCustomerById");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				customer = new CustomerDTO();
+				
+				customer.setCustomerId(rset.getString("CUSTOMER_ID"));
+				customer.setCustomerPwd(rset.getString("CUSTOMER_PWD"));
+				customer.setCount(rset.getInt("COUNT"));
+				customer.setGrade(rset.getString("GRADE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return customer;
+	}
+
 }

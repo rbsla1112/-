@@ -84,4 +84,46 @@ public class CustomerService {
 		return result;
 	}
 
+	public int plustCount(String id) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = customerDAO.plusCount(con, id);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	public int modifyGrade(String id, int count) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = customerDAO.modifyGrade(con, id, count);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	public CustomerDTO selectCustomerById(String id) {
+		Connection con = getConnection();
+		
+		CustomerDTO customer = customerDAO.selectCustomerById(con, id);
+		
+		close(con);
+		
+		return customer;
+	}
+
 }

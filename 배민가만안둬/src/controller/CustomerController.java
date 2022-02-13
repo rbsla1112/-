@@ -65,5 +65,38 @@ public class CustomerController {
 			rv.displayDmlResult("deleteFailed");
 		}
 	}
+
+	public void plusCount(String id) {
+		int result = customerService.plustCount(id);
+		
+		if(result > 0) {
+			rv.displayDmlResult("updateSuccess");
+		} else {
+			rv.displayDmlResult("updateFailed");
+		}
+	}
+
+	public void modifyGrade(String id) {
+		CustomerDTO customer = selectCustomerById(id);
+		int result = customerService.modifyGrade(id, customer.getCount());
+		
+		if(result > 0) {
+			rv.displayDmlResult("updateSuccess");
+		} else {
+			rv.displayDmlResult("updateFailed");
+		}
+	}
+	
+	public CustomerDTO selectCustomerById(String id) {
+		CustomerDTO customer = customerService.selectCustomerById(id);
+		
+		if(customer != null) {
+			rv.displayDmlResult("selectSuccess");
+		} else {
+			rv.displayDmlResult("selectFailed");
+		}
+		
+		return customer;
+	}
 	
 }
