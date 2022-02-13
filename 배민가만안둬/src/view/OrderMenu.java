@@ -200,7 +200,6 @@ public class OrderMenu {
 			System.out.println(id + "님 : " + customer.getGrade());
 			System.out.println("1. 비밀번호 수정");
 			System.out.println("2. 주문내역 조회");
-			System.out.println("3. 회원 탈퇴");
 			System.out.println("0. 뒤로 가기");
 			System.out.print("메뉴 선택 : ");
 			int no = sc.nextInt();
@@ -209,7 +208,6 @@ public class OrderMenu {
 			switch(no) {
 			case 1 : cc.modifyPassword(id, inputPwd()); displayCustomerLogin();
 			case 2 : cc.selectOrderHistory(id); break;
-			case 3 : cc.deleteCustomer(id); displayCustomerLogin();
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요.\n");
 			}

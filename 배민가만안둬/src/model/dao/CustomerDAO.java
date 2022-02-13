@@ -129,26 +129,6 @@ public class CustomerDAO {
 		return orderHistory;
 	}
 
-	public int deleteCustomer(Connection con, String id) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("deleteCustomer");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, id);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
 	public int plusCount(Connection con, String id) {
 		PreparedStatement pstmt = null;
 		int result = 0;

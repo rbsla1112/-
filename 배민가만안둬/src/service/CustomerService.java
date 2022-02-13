@@ -68,22 +68,6 @@ public class CustomerService {
 		return orderHistory;
 	}
 
-	public int deleteCustomer(String id) {
-		Connection con = getConnection();
-		
-		int result = 0;
-		
-		result = customerDAO.deleteCustomer(con, id);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
-	}
-
 	public int plustCount(String id) {
 		Connection con = getConnection();
 		

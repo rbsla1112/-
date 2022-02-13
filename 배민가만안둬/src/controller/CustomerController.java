@@ -56,16 +56,6 @@ public class CustomerController {
 		}
 	}
 
-	public void deleteCustomer(String id) {
-		int result = customerService.deleteCustomer(id);
-		
-		if(result > 0) {
-			rv.displayDmlResult("deleteSuccess");
-		} else {
-			rv.displayDmlResult("deleteFailed");
-		}
-	}
-
 	public void plusCount(String id) {
 		int result = customerService.plustCount(id);
 		
